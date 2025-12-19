@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ml_bg">#0E0F13</color>
+    <color name="ml_surface">#171A21</color>
+    <color name="ml_surface2">#1E2230</color>
+    <color name="ml_text">#E6E8EF</color>
+    <color name="ml_text_muted">#A9B0C3</color>
+    <color name="ml_accent">#7C3AED</color>
+    <color name="ml_accent2">#22C55E</color>
+    <color name="ml_divider">#2A2F3D</color>
+</resources>
