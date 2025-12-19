@@ -10,3 +10,11 @@ Inside the app menu: "Enable notification access"
 
 ## Raspberry Pi
 Settings -> enable -> set URL, e.g. http://192.168.1.10:8080/api/messages
+
+Team:
+1. Анистратов Александр
+2. Хайбиев Константин
+3. Бадртдинов Тимур
+
+Group:
+РИС-22-1Б
