@@ -8,6 +8,7 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.os.Handler;
 import android.os.Looper;
+import android.app.Notification.InboxStyle;
 
 import com.messagelink.data.NotificationRepository;
 import com.messagelink.data.SettingsStore;
@@ -30,6 +31,14 @@ public class MessageLinkNotificationListener extends NotificationListenerService
         String title = "";
         String text = "";
         if (ex != null) {
+            CharSequence[] lines = ex.getCharSequenceArray(Notification.EXTRA_TEXT_LINES);
+            if (lines != null && lines.length > 0) {
+                StringBuilder sb = new StringBuilder();
+                for (CharSequence line : lines) {
+                    if (sb.length() > 0) sb.append("\n");
+                    sb.append(line);
+                }
+                text = sb.toString();
             CharSequence t = ex.getCharSequence(Notification.EXTRA_TITLE);
             CharSequence tx = ex.getCharSequence(Notification.EXTRA_TEXT);
             CharSequence big = ex.getCharSequence(Notification.EXTRA_BIG_TEXT);
