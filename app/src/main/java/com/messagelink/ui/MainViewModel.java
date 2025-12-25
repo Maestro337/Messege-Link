@@ -63,4 +63,8 @@ public class MainViewModel extends AndroidViewModel {
     private String like(String q) {
         return "%" + q.replace("%", "") + "%";
     }
+
+    public void clearNotifications() {
+        repo.clear();
+    }
 }
