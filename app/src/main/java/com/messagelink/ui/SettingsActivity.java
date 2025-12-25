@@ -25,6 +25,9 @@ public class SettingsActivity extends AppCompatActivity {
         EditText piUrl = findViewById(R.id.piUrl);
         View save = findViewById(R.id.saveBtn);
 
+        EditText retentionInput = findViewById(R.id.retentionDays);
+        retentionInput.setText(String.valueOf(SettingsStore.getRetentionDays(this)));
+
         piSwitch.setChecked(SettingsStore.isPiEnabled(this));
         piUrl.setText(SettingsStore.getPiUrl(this));
 
@@ -32,6 +35,10 @@ public class SettingsActivity extends AppCompatActivity {
             SettingsStore.setPiEnabled(this, piSwitch.isChecked());
             SettingsStore.setPiUrl(this, piUrl.getText() == null ? "" : piUrl.getText().toString());
             finish();
+            try {
+                int days = Integer.parseInt(retentionInput.getText().toString());
+                SettingsStore.setRetentionDays(this, days);
+            } catch (Exception ignored) {}
         });
     }
 }

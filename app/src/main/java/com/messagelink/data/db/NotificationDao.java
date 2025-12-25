@@ -32,4 +32,7 @@ public interface NotificationDao {
 
     @Query("SELECT COUNT(*) FROM notifications")
     LiveData<Integer> observeCount();
+
+    @Query("DELETE FROM notifications WHERE postedAt < :timestamp")
+    void deleteOlderThan(long timestamp);
 }

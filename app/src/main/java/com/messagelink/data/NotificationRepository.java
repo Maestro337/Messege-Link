@@ -68,4 +68,7 @@ public final class NotificationRepository {
     public void clear() {
         io.execute(() -> dao.clear());
     }
+    public void cleanupOld(long olderThanTimestamp) {
+        io.execute(() -> dao.deleteOlderThan(olderThanTimestamp));
+    }
 }

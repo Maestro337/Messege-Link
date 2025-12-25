@@ -29,4 +29,14 @@ public final class SettingsStore {
     private static SharedPreferences prefs(Context c) {
         return c.getApplicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
     }
+
+    private static final String KEY_RETENTION_DAYS = "retention_days";
+
+    public static int getRetentionDays(Context c) {
+        return prefs(c).getInt(KEY_RETENTION_DAYS, 30); // по умолчанию 30 дней
+    }
+
+    public static void setRetentionDays(Context c, int days) {
+        prefs(c).edit().putInt(KEY_RETENTION_DAYS, days > 0 ? days : 30).apply();
+    }
 }

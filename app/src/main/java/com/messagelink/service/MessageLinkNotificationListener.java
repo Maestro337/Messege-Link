@@ -47,6 +47,12 @@ public class MessageLinkNotificationListener extends NotificationListenerService
         NotificationRepository repo = NotificationRepository.get(getApplicationContext());
         repo.insert(e);
 
+
+        long retentionMs = SettingsStore.getRetentionDays(getApplicationContext()) * 24L * 60 * 60 * 1000;
+        long cutoff = System.currentTimeMillis() - retentionMs;
+        NotificationRepository repo = NotificationRepository.get(getApplicationContext());
+        repo.cleanupOld(cutoff);
+
         if (SettingsStore.isPiEnabled(this)) {
             String url = SettingsStore.getPiUrl(this);
             try {
