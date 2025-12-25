@@ -1,5 +1,6 @@
 package com.messagelink.ui;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -86,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean onMenu(@NonNull MenuItem item) {
         int id = item.getItemId();
+
+        if (id == R.id.action_clear) {
+            showClearDialog();
+            return true;
+        }
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
@@ -95,5 +101,16 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+    private void showClearDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Очистить уведомления?")
+                .setMessage("Все уведомления будут удалены безвозвратно.")
+                .setPositiveButton("Да", (dialog, which) -> {
+                    vm.clearNotifications();
+                    Toast.makeText(this, "Уведомления очищены", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Нет", null)
+                .show();
     }
 }

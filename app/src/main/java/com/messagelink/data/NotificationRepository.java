@@ -64,4 +64,8 @@ public final class NotificationRepository {
     public void insert(NotificationEntity e) {
         io.execute(() -> dao.insert(e));
     }
+
+    public void clear() {
+        io.execute(() -> dao.clear());
+    }
 }
