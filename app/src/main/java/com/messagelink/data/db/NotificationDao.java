@@ -21,10 +21,23 @@ public interface NotificationDao {
     @Query("SELECT * FROM notifications WHERE packageName = :pkg ORDER BY postedAt DESC")
     LiveData<List<NotificationEntity>> observeByPackage(String pkg);
 
-    @Query("SELECT * FROM notifications WHERE (title LIKE :q OR text LIKE :q OR appName LIKE :q) ORDER BY postedAt DESC")
+    @Query(
+            "SELECT * FROM notifications " +
+                    "WHERE (title LIKE :q ESCAPE '\\' " +
+                    "OR text LIKE :q ESCAPE '\\' " +
+                    "OR appName LIKE :q ESCAPE '\\') " +
+                    "ORDER BY postedAt DESC"
+    )
     LiveData<List<NotificationEntity>> observeSearch(String q);
 
-    @Query("SELECT * FROM notifications WHERE packageName = :pkg AND (title LIKE :q OR text LIKE :q OR appName LIKE :q) ORDER BY postedAt DESC")
+    @Query(
+            "SELECT * FROM notifications " +
+                    "WHERE packageName = :pkg AND " +
+                    "(title LIKE :q ESCAPE '\\' " +
+                    "OR text LIKE :q ESCAPE '\\' " +
+                    "OR appName LIKE :q ESCAPE '\\') " +
+                    "ORDER BY postedAt DESC"
+    )
     LiveData<List<NotificationEntity>> observeByPackageSearch(String pkg, String q);
 
     @Query("SELECT DISTINCT packageName FROM notifications ORDER BY packageName ASC")
