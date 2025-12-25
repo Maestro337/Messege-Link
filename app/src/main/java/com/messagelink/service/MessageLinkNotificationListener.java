@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
+import android.os.Handler;
+import android.os.Looper;
 
 import com.messagelink.data.NotificationRepository;
 import com.messagelink.data.SettingsStore;
@@ -54,7 +56,7 @@ public class MessageLinkNotificationListener extends NotificationListenerService
                 o.put("title", title);
                 o.put("text", text);
                 o.put("postedAt", when);
-                PiClient.post(url, o);
+                PiClient.post(this, url, o);
             } catch (Exception ignored) {}
         }
     }
