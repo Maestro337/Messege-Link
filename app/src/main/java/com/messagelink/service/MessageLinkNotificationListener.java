@@ -62,6 +62,7 @@ public class MessageLinkNotificationListener extends NotificationListenerService
                 o.put("title", title);
                 o.put("text", text);
                 o.put("postedAt", when);
+                o.put("source", "MessageLink Android");
                 PiClient.post(this, url, o);
             } catch (Exception ignored) {}
         }
