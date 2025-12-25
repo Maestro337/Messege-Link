@@ -61,6 +61,12 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     private String like(String q) {
-        return "%" + q.replace("%", "") + "%";
+        String s = q == null ? "" : q.trim();
+
+        s = s.replace("\\", "\\\\");
+                s = s.replace("%", "\\%")
+                        .replace("_", "\\_");
+
+        return "%" + s + "%";
     }
 }
